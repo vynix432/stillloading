@@ -154,7 +154,7 @@ ${journal.date || ""}
 // SKILLS
 // ====================
 
-function loadSkills(){
+function loadSkillsFromSupabase(){
 
 const skills =
 getSkills();
@@ -213,6 +213,86 @@ skills[key] + "%";
 // ====================
 // START
 // ====================
+async function loadSkillsFromSupabase(){
+
+const { data, error } =
+await supabase
+.from("skills")
+.select("*")
+.limit(1)
+.single();
+
+if(error){
+
+console.error(error);
+
+return;
+
+}
+
+const skills = {
+
+linux: data.linux,
+python: data.python,
+cybersecurity: data.cybersecurity,
+networking: data.networking,
+cloud: data.cloud
+
+};
+
+const map = {
+
+linux:".linux",
+python:".python",
+cybersecurity:".cyber",
+networking:".network",
+cloud:".cloud"
+
+};
+
+Object.entries(map)
+.forEach(([key,selector])=>{
+
+const bar =
+document.querySelector(selector);
+
+if(bar){
+
+bar.style.width =
+skills[key] + "%";
+
+}
+
+});
+
+const percentMap = {
+
+linux:"linuxPercent",
+python:"pythonPercent",
+cybersecurity:"cyberPercent",
+networking:"networkPercent",
+cloud:"cloudPercent"
+
+};
+
+Object.keys(percentMap)
+.forEach(key=>{
+
+const el =
+document.getElementById(
+percentMap[key]
+);
+
+if(el){
+
+el.textContent =
+skills[key] + "%";
+
+}
+
+});
+
+}
 
 document.addEventListener(
 "DOMContentLoaded",
