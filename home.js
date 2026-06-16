@@ -289,8 +289,4 @@ ${latest.lesson}
 
 }
 
-if(typeof supabase !== "undefined"){
-    alert("Supabase Connected");
-}else{
-    alert("Supabase Not Found");
-}
+
