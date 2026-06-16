@@ -154,7 +154,7 @@ ${journal.date || ""}
 // SKILLS
 // ====================
 
-function loadSkillsFromSupabase(){
+function loadSkills(){
 
 const skills =
 getSkills();
@@ -304,7 +304,7 @@ loadHomeProjects();
 
 loadHomeJournals();
 
-loadSkills();
+loadSkillsFromSupabase();
 loadFailureLog();
 }
 );
