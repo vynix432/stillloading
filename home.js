@@ -224,11 +224,14 @@ await supabase
 
 if(error){
 
-console.error(error);
+alert("ERROR: " + error.message);
 
 return;
 
 }
+
+alert("SUCCESS");
+alert(JSON.stringify(data));
 
 const skills = {
 
