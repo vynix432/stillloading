@@ -2,15 +2,15 @@ const SUPABASE_URL =
 "https://rctjrobphjtxbouvjrus.supabase.co";
 
 const SUPABASE_KEY =
-"sb_publishable_HFgVv7e1bs-vudJb0LhLFQ_rUs4xGTz";
+"YOUR_PUBLISHABLE_KEY";
 
-const supabase =
+const db =
 window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 console.log(supabase);
-alert(typeof supabase.from);
+alert(typeof db.from);
 alert("Supabase JS Loaded");
 alert(typeof window.supabase);
 alert(Object.keys(window.supabase));
