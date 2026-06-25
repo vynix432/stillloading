@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Room | Path to Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo"><span class="logo-dot"></span>Control Room</a>
+    <button id="logoutBtn" class="logout-btn hidden" onclick="doLogout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </nav>
+
+  <div class="cr-wrap">
+
+    <!-- LOGIN -->
+    <div id="loginBox" class="login-card">
+      <div style="font-size:2rem;margin-bottom:1rem">🔐</div>
+      <h2>Access Required</h2>
+      <p>Only you can enter here.</p>
+      <label class="form-label">Email</label>
+      <input type="email" id="crEmail" class="form-input" placeholder="your@email.com">
+      <label class="form-label">Password</label>
+      <input type="password" id="crPassword" class="form-input" placeholder="••••••••"
+        onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="doLogin()">
+        <i class="fas fa-unlock"></i> Enter
+      </button>
+      <p id="loginMsg" class="msg-text"></p>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="crdash" class="hidden">
+
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem">
+        <div>
+          <p class="section-label">Admin</p>
+          <h1 style="font-family:var(--font-display);font-size:2rem;font-weight:800">Control Room</h1>
+        </div>
+        <button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+
+      <!-- QUICK ACCESS GRID -->
+      <div class="cr-grid">
+        <div class="cr-card" onclick="show('secAddProject')">
+          <div class="cr-card-icon">🚀</div>
+          <div class="cr-card-title">Add Project</div>
+        </div>
+        <div class="cr-card" onclick="show('secManageProjects')">
+          <div class="cr-card-icon">📁</div>
+          <div class="cr-card-title">Manage Projects</div>
+        </div>
+        <div class="cr-card" onclick="show('secAddJournal')">
+          <div class="cr-card-icon">📝</div>
+          <div class="cr-card-title">Add Journal</div>
+        </div>
+        <div class="cr-card" onclick="show('secManageJournals')">
+          <div class="cr-card-icon">📖</div>
+          <div class="cr-card-title">Manage Journals</div>
+        </div>
+        <div class="cr-card" onclick="show('secAddFailure')">
+          <div class="cr-card-icon">💥</div>
+          <div class="cr-card-title">Add Failure Log</div>
+        </div>
+        <div class="cr-card" onclick="show('secManageFailures')">
+          <div class="cr-card-icon">📋</div>
+          <div class="cr-card-title">Manage Failures</div>
+        </div>
+        <div class="cr-card" onclick="show('secSkills')">
+          <div class="cr-card-icon">📊</div>
+          <div class="cr-card-title">Update Skills</div>
+        </div>
+        <div class="cr-card" onclick="show('secGoals')">
+          <div class="cr-card-icon">🎯</div>
+          <div class="cr-card-title">Edit Goals</div>
+        </div>
+      </div>
+
+      <!-- ADD PROJECT -->
+      <div id="secAddProject" class="form-section hidden">
+        <h2>🚀 Add Project</h2>
+        <label class="form-label">Title *</label>
+        <input id="pTitle" class="form-input" placeholder="Project name">
+        <label class="form-label">Description *</label>
+        <textarea id="pDesc" class="form-input" placeholder="What did you build and why?"></textarea>
+        <label class="form-label">GitHub Link (optional)</label>
+        <input id="pGithub" class="form-input" placeholder="https://github.com/...">
+        <button class="btn btn-primary" onclick="addProject()"><i class="fas fa-save"></i> Save Project</button>
+        <p id="msgAddProject" class="msg-text"></p>
+      </div>
+
+      <!-- MANAGE PROJECTS -->
+      <div id="secManageProjects" class="form-section hidden">
+        <h2>📁 Manage Projects</h2>
+        <div id="listProjects"></div>
+      </div>
+
+      <!-- EDIT PROJECT -->
+      <div id="secEditProject" class="form-section hidden">
+        <h2>✏️ Edit Project</h2>
+        <input type="hidden" id="epId">
+        <label class="form-label">Title</label>
+        <input id="epTitle" class="form-input" placeholder="Title">
+        <label class="form-label">Description</label>
+        <textarea id="epDesc" class="form-input" placeholder="Description"></textarea>
+        <label class="form-label">GitHub Link</label>
+        <input id="epGithub" class="form-input" placeholder="GitHub URL">
+        <button class="btn btn-primary" onclick="updateProject()"><i class="fas fa-save"></i> Save Changes</button>
+        <p id="msgEditProject" class="msg-text"></p>
+      </div>
+
+      <!-- ADD JOURNAL -->
+      <div id="secAddJournal" class="form-section hidden">
+        <h2>📝 Add Journal Entry</h2>
+        <label class="form-label">Title *</label>
+        <input id="jTitle" class="form-input" placeholder="Entry title">
+        <label class="form-label">Content *</label>
+        <textarea id="jContent" class="form-input" style="min-height:200px" placeholder="Write your thoughts, lessons or progress..."></textarea>
+        <button class="btn btn-primary" onclick="addJournal()"><i class="fas fa-save"></i> Save Entry</button>
+        <p id="msgAddJournal" class="msg-text"></p>
+      </div>
+
+      <!-- MANAGE JOURNALS -->
+      <div id="secManageJournals" class="form-section hidden">
+        <h2>📖 Manage Journals</h2>
+        <div id="listJournals"></div>
+      </div>
+
+      <!-- EDIT JOURNAL -->
+      <div id="secEditJournal" class="form-section hidden">
+        <h2>✏️ Edit Journal Entry</h2>
+        <input type="hidden" id="ejId">
+        <label class="form-label">Title</label>
+        <input id="ejTitle" class="form-input">
+        <label class="form-label">Content</label>
+        <textarea id="ejContent" class="form-input" style="min-height:200px"></textarea>
+        <button class="btn btn-primary" onclick="updateJournal()"><i class="fas fa-save"></i> Save Changes</button>
+        <p id="msgEditJournal" class="msg-text"></p>
+      </div>
+
+      <!-- ADD FAILURE -->
+      <div id="secAddFailure" class="form-section hidden">
+        <h2>💥 Add Failure Log</h2>
+        <label class="form-label">What mistake did you make? *</label>
+        <textarea id="fMistake" class="form-input" placeholder="Describe the mistake..."></textarea>
+        <label class="form-label">How did you fix it? *</label>
+        <textarea id="fFix" class="form-input" placeholder="What did you do to fix it?"></textarea>
+        <label class="form-label">What lesson did you learn? *</label>
+        <textarea id="fLesson" class="form-input" placeholder="The key takeaway..."></textarea>
+        <button class="btn btn-primary" onclick="addFailure()"><i class="fas fa-save"></i> Save Failure Log</button>
+        <p id="msgAddFailure" class="msg-text"></p>
+      </div>
+
+      <!-- MANAGE FAILURES -->
+      <div id="secManageFailures" class="form-section hidden">
+        <h2>📋 Manage Failure Logs</h2>
+        <div id="listFailures"></div>
+      </div>
+
+      <!-- EDIT FAILURE -->
+      <div id="secEditFailure" class="form-section hidden">
+        <h2>✏️ Edit Failure Log</h2>
+        <input type="hidden" id="efId">
+        <label class="form-label">Mistake</label>
+        <textarea id="efMistake" class="form-input"></textarea>
+        <label class="form-label">Fix</label>
+        <textarea id="efFix" class="form-input"></textarea>
+        <label class="form-label">Lesson</label>
+        <textarea id="efLesson" class="form-input"></textarea>
+        <button class="btn btn-primary" onclick="updateFailure()"><i class="fas fa-save"></i> Save Changes</button>
+        <p id="msgEditFailure" class="msg-text"></p>
+      </div>
+
+      <!-- SKILLS -->
+      <div id="secSkills" class="form-section hidden">
+        <h2>📊 Update Skills</h2>
+        <label class="form-label">Linux (%)</label>
+        <input type="number" id="skLinux" class="form-input" min="0" max="100" placeholder="0–100">
+        <label class="form-label">Python (%)</label>
+        <input type="number" id="skPython" class="form-input" min="0" max="100" placeholder="0–100">
+        <label class="form-label">Cybersecurity (%)</label>
+        <input type="number" id="skCyber" class="form-input" min="0" max="100" placeholder="0–100">
+        <label class="form-label">Networking (%)</label>
+        <input type="number" id="skNetwork" class="form-input" min="0" max="100" placeholder="0–100">
+        <label class="form-label">Cloud (%)</label>
+        <input type="number" id="skCloud" class="form-input" min="0" max="100" placeholder="0–100">
+        <button class="btn btn-primary" onclick="updateSkills()"><i class="fas fa-save"></i> Save Skills</button>
+        <p id="msgSkills" class="msg-text"></p>
+      </div>
+
+      <!-- GOALS -->
+      <div id="secGoals" class="form-section hidden">
+        <h2>🎯 Edit Goals</h2>
+        <div id="goalsList"></div>
+        <p id="msgGoals" class="msg-text"></p>
+      </div>
+
+    </div><!-- /crdash -->
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="storage.js"></script>
+  <script src="control-room.js"></script>
+</body>
+</html>

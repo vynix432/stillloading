@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal | Path to Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .journal-full-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+    .journal-full-card:hover { border-color: rgba(59,130,246,0.35); }
+    .journal-full-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      gap: 1rem;
+    }
+    .journal-full-header h3 {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      flex: 1;
+    }
+    .journal-full-header .jdate {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .journal-chevron {
+      color: var(--text-muted);
+      transition: transform var(--transition);
+      font-size: 0.8rem;
+    }
+    .journal-full-body {
+      display: none;
+      padding: 0 1.5rem 1.25rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 1.25rem;
+    }
+    .journal-full-body.open { display: block; }
+    .journal-full-body p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      white-space: pre-wrap;
+    }
+    .journal-chevron.open { transform: rotate(180deg); }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo"><span class="logo-dot"></span>Path to Pro</a>
+    <button class="menu-btn" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#dashboard">Dashboard</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="index.html#goals">Goals</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-wrap">
+    <a href="index.html" class="page-back"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    <p class="section-label">Daily Log</p>
+    <h1 class="page-title">Journal</h1>
+    <p class="page-sub">Lessons, wins, mistakes and daily growth.</p>
+
+    <div class="search-wrap">
+      <span class="search-icon"><i class="fas fa-search"></i></span>
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Search entries..."
+        oninput="searchJournals()"
+      >
+    </div>
+
+    <div id="journalContainer"></div>
+  </div>
+
+  <footer><p>© 2026 Path to Pro</p></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="storage.js"></script>
+  <script src="journal.js"></script>
+</body>
+</html>

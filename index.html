@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Path to Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-dot"></span>
+      Path to Pro
+    </a>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="journal.html">Journal</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="#goals">Goals</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <span></span>
+      Learning &nbsp;·&nbsp; Building &nbsp;·&nbsp; Improving
+    </div>
+    <h1>
+      My <span class="gradient">Path to Pro</span><br>
+      starts today.
+    </h1>
+    <p class="hero-bio" id="heroBio">
+      I'm on a mission to go from zero to professional developer —
+      one project, one lesson, and one failure at a time.
+    </p>
+    <div class="hero-buttons">
+      <a href="projects.html" class="btn btn-primary">
+        <i class="fas fa-rocket"></i> View Projects
+      </a>
+      <a href="journal.html" class="btn btn-ghost">
+        <i class="fas fa-book-open"></i> Read Journal
+      </a>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="section">
+    <p class="section-label">Overview</p>
+    <h2 class="section-title">Growth Dashboard</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="statProjects">—</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statJournals">—</div>
+        <div class="stat-label">Journal Entries</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="statFailures">—</div>
+        <div class="stat-label">Lessons Learned</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2026</div>
+        <div class="stat-label">Journey Started</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <p class="section-label">Competencies</p>
+    <h2 class="section-title">Skills & Progress</h2>
+    <div class="card">
+      <div class="skills-list" id="skillsList">
+        <div class="skill-row">
+          <div class="skill-meta">
+            <span class="skill-name">Linux</span>
+            <span class="skill-pct" id="pctLinux">0%</span>
+          </div>
+          <div class="skill-track"><div class="skill-bar" id="barLinux" style="width:0%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-meta">
+            <span class="skill-name">Python</span>
+            <span class="skill-pct" id="pctPython">0%</span>
+          </div>
+          <div class="skill-track"><div class="skill-bar" id="barPython" style="width:0%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-meta">
+            <span class="skill-name">Cybersecurity</span>
+            <span class="skill-pct" id="pctCyber">0%</span>
+          </div>
+          <div class="skill-track"><div class="skill-bar" id="barCyber" style="width:0%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-meta">
+            <span class="skill-name">Networking</span>
+            <span class="skill-pct" id="pctNetwork">0%</span>
+          </div>
+          <div class="skill-track"><div class="skill-bar" id="barNetwork" style="width:0%"></div></div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-meta">
+            <span class="skill-name">Cloud</span>
+            <span class="skill-pct" id="pctCloud">0%</span>
+          </div>
+          <div class="skill-track"><div class="skill-bar" id="barCloud" style="width:0%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT PROJECTS -->
+  <section id="projects" class="section">
+    <p class="section-label">Building</p>
+    <h2 class="section-title">Recent Projects</h2>
+    <div class="projects-grid" id="homeProjects"></div>
+    <div style="margin-top:1.5rem;text-align:center">
+      <a href="projects.html" class="btn btn-ghost">View all projects →</a>
+    </div>
+  </section>
+
+  <!-- RECENT JOURNAL -->
+  <section id="journal" class="section">
+    <p class="section-label">Daily Log</p>
+    <h2 class="section-title">Latest Journal Entries</h2>
+    <div class="journal-grid" id="homeJournals"></div>
+    <div style="margin-top:1.5rem;text-align:center">
+      <a href="journal.html" class="btn btn-ghost">Read all entries →</a>
+    </div>
+  </section>
+
+  <!-- FAILURE & LESSONS -->
+  <section id="failures" class="section">
+    <p class="section-label">Lessons from failure</p>
+    <h2 class="section-title">Mistakes & Fixes</h2>
+    <div id="homeFailures"></div>
+  </section>
+
+  <!-- GOALS -->
+  <section id="goals" class="section">
+    <p class="section-label">Targets</p>
+    <h2 class="section-title">Current Goals</h2>
+    <div class="goals-grid" id="homeGoals"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <p class="section-label">Connect</p>
+    <h2 class="section-title">Find Me Online</h2>
+    <div class="contact-grid">
+      <a href="https://github.com/imon4324" target="_blank" class="contact-card">
+        <div class="contact-icon"><i class="fab fa-github"></i></div>
+        <div>
+          <div class="contact-label">GitHub</div>
+          <div class="contact-sub">@imon4324</div>
+        </div>
+      </a>
+      <a href="https://in.linkedin.com/in/imon-mondal-937296417" target="_blank" class="contact-card">
+        <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+        <div>
+          <div class="contact-label">LinkedIn</div>
+          <div class="contact-sub">Imon Mondal</div>
+        </div>
+      </a>
+      <a href="mailto:imon4324m@proton.me" class="contact-card">
+        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-sub">imon4324m@proton.me</div>
+        </div>
+      </a>
+      <a href="https://twitter.com/" target="_blank" class="contact-card">
+        <div class="contact-icon"><i class="fab fa-x-twitter"></i></div>
+        <div>
+          <div class="contact-label">Twitter / X</div>
+          <div class="contact-sub">Add your handle</div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Path to Pro &nbsp;·&nbsp; Learning • Building • Improving</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js"></script>
+  <script src="storage.js"></script>
+  <script src="home.js"></script>
+</body>
+</html>
